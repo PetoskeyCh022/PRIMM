@@ -24,8 +24,9 @@ class Human:
         print("The human is communicating clearly.")
 
 class AI(Human):
-    def __init__(self, name, age, occupation, intelligence_level):
+    def __init__(self, name, age, occupation, intelligence_level, object):
         self.intelligence_level = intelligence_level
+        self.object = object
         super().__init__(name, age, occupation)
 
     def think(self):
@@ -37,6 +38,10 @@ class AI(Human):
     def learn(self):
         print("The AI is learning and improving its capabilities.")
 
+    def analyze(self):
+        print("The AI is analyzing {object}.")
+
+
 my_ai = AI("Athena", 5, "Virtual Assistant", 9.8)
 print(my_ai.name)
 print(my_ai.age)
@@ -45,6 +50,9 @@ print(my_ai.intelligence_level)
 my_ai.think()
 my_ai.communicate()
 my_ai.learn()
+
+ai1 = AI(12, "Rock")
+ai1.analyze()
 ```
 ---
 ### R(un)
@@ -52,6 +60,7 @@ my_ai.learn()
 Copy and paste the previous code snippet into in a file named `ai-primm.py`.
 
 Run the script.  Did your predictions match the output?  Why or why not?
+Yes. The methods called had all the variables/attributes they needed to carry out their functions.
 
 ---
 
@@ -60,14 +69,21 @@ Run the script.  Did your predictions match the output?  Why or why not?
 Answer these questions about the code snippet:
 
 1. What is the relationship between the Human and AI classes?
+    An inherited relation. The human is the parent class, and the AI is the child class.
 2. How does the `__init__()` method in the AI class use the `super()` function?
-3. What is the purpose of the `think()` and `communicate()` methods in both the Human and AI classes?
+    Borrows the variables from the initialisation from the parent.
+3. What is the purpose of the `think()` and `communicate()` methods in both the Human and AI classes?'
+    To display a message showing how the human and AI think and communicate.
 4. How does the output of the `think()` and `communicate()` methods differ between the Human and AI instances?
+    The message displayed by the method of the AI and Human is different from one another.
 5. What is the purpose of the `learn()` method in the AI class?
+    To display a message saying the AI is learning.
 6. Which attributes will the AI class get/grab from the Human class?
+    Name, age, and occupation.
 7. Which attribute belongs specifically to the AI class?
+    intelligence_level
 8. How many attributes **total** will an instance of the AI class have?
-
+    5 (including self)
 ---
 
 ### M(odify)
@@ -85,3 +101,59 @@ Answer these questions about the code snippet:
 - The `perform_task()` method should print -- using an f-string -- a short message about the robot performing a specific task
 
 ---
+### Work for the above is below
+
+class Human:
+    def __init__(self, name, age, occupation):
+        self.name = name
+        self.age = age
+        self.occupation = occupation
+
+    def think(self):
+        print("The human is thinking deeply.")
+
+    def communicate(self):
+        print("The human is communicating clearly.")
+
+class AI(Human):
+    def __init__(self, name, age, occupation, intelligence_level, object):
+        self.intelligence_level = intelligence_level
+        self.object = object
+        super().__init__(name, age, occupation)
+
+    def think(self):
+        print("The A`perform_task()` online.")
+
+    def communicate(self):
+        print("The AI is communicating digitally with its human.")
+
+    def learn(self):
+        print("The AI is learning and improving its capabilities.")
+
+    def analyze(self):
+        print(f"The AI is analyzing {self.object}.")
+
+class Robot(Human):
+    def __init__(self, name, age, occupation, intelligence_level, object, task):
+        self.intelligence_level = intelligence_level
+        self.object = object
+        self.task = task
+        super().__init__(name, age, occupation)
+
+    def perform_task(self):
+        print(f"Robot is performing {self.task}")
+
+my_ai = AI("Athena", 5, "Virtual Assistant", 9.8, "rock")
+print(my_ai.name)
+print(my_ai.age)
+print(my_ai.occupation)
+print(my_ai.intelligence_level)
+my_ai.think()
+my_ai.communicate()
+my_ai.learn()
+
+ai1 = AI("John", 12, "eating", 12, "rock")
+ai1.analyze()
+
+robot1 = Robot("Model 1Gu3", 3, "automated task handler", 5, "box", "transportation of boxes")
+robot1.perform_task()
